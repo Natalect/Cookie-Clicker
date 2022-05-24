@@ -1,0 +1,151 @@
+body {
+  margin: 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Clicker Area */
+.clickerArea {
+  background: repeating-linear-gradient(
+    90deg,
+    #39435b,
+    #39435b 25px,
+    #2d3547 25px,
+    #2d3547 50px
+  );
+  width: 180%;
+  border: rgb(35, 35, 35) solid 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.bakeryNameContainer {
+  background-color: rgba(47, 47, 47, 0.523);
+  border: none;
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 10px;
+  width: 75%;
+  margin-bottom: 0px;
+  margin-left: 10%;
+  margin-right: 10%;
+  color: white;
+  text-align: center;
+}
+
+#bakeryName {
+  margin: 0px;
+  background-color: rgba(47, 47, 47, 0);
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  border: none;
+}
+
+#bakeryName:focus {
+  border: none;
+}
+
+.cookiesData {
+  background-color: rgba(47, 47, 47, 0.523);
+  margin-top: 5px;
+  padding: 5px;
+  color: white;
+}
+
+.cookiesAmount {
+  margin: 0px;
+}
+
+.cookiesPerSecond {
+  margin: 0px;
+  font-size: 18px;
+}
+
+.clicker {
+  margin: 20px;
+}
+
+/* Buildings Area */
+.buildingsArea {
+  background: repeating-linear-gradient(
+    90deg,
+    #404c66,
+    #404c66 25px,
+    #374157 25px,
+    #374157 50px
+  );
+  border: rgb(35, 35, 35) solid 3px;
+  padding: 15px;
+  width: 300%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Purchase Area */
+.purchaseArea {
+  background: repeating-linear-gradient(
+    90deg,
+    #39435b,
+    #39435b 25px,
+    #2d3547 25px,
+    #2d3547 50px
+  );
+  border: rgb(35, 35, 35) solid 3px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.storeTitle {
+  color: white;
+  text-align: center;
+  margin: 0px;
+  margin-bottom: 0px;
+  border-bottom: rgb(35, 35, 35) solid 3px;
+}
+
+.upgrades {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.upgrade {
+  width: 50px;
+  height: 50px;
+  border: rgb(53, 33, 1) 3px ridge;
+  text-align: center;
+}
+
+.purchaseItem {
+  background-color: #454545;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: groove black 3px;
+}
+
+.purchaseItem:hover {
+  opacity: 120%;
+}
+
+.purchaseData h2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.purchaseData h3 {
+  margin-top: 0px;
+  margin-bottom: 02px;
+}
+
+.ownedAmount {
+  margin: 0px;
+}
+
+#cannotAfford {
+  color: red;
+}

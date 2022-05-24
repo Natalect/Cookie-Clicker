@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Idle Game</title>
+  </head>
+  <body>
+    <div class="clickerArea">
+      <p class="bakeryNameContainer">
+        <input type="text" id="bakeryName" placeholder="Dev's Bakery" />
+      </p>
+      <div class="cookiesData">
+        <h1 class="cookiesAmount">You have <a id="cookies">no</a> cookies</h1>
+        <h2 class="cookiesPerSecond">
+          per second: <a id="cookiesPerSecond">0</a>
+        </h2>
+      </div>
+      <button class="clicker" type="button" onClick="onClick()">
+        Click me
+      </button>
+    </div>
+    <div class="buildingsArea"></div>
+    <div class="purchaseArea">
+      <h1 class="storeTitle">Store</h1>
+      <div class="upgrades">
+        <!-- Upgrades -->
+        <div class="upgrade" onClick="upgradeCursor1()"></div>
+        <div class="upgrade" onClick="upgradeGrandma1()"></div>
+      </div>
+      <div class="purchaseItem" onClick="onCursorClick()">
+        <div class="purchaseData">
+          <h2>Cursor</h2>
+          <h3 id="cursorPrice">7</h3>
+        </div>
+        <div>
+          <h2 class="ownedAmount"><a id="amountOfCursors"></a></h2>
+        </div>
+      </div>
+      <div class="purchaseItem" onClick="onGrandmaClick()">
+        <div class="purchaseData">
+          <h2>Grandma</h2>
+          <h3 id="grandmaPrice">7</h3>
+        </div>
+        <div>
+          <h2 class="ownedAmount"><a id="amountOfGrandmas"></a></h2>
+        </div>
+      </div>
+    </div>
+    <script src="./main.js"></script>
+  </body>
+</html>
