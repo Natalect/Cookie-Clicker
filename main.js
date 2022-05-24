@@ -9,18 +9,37 @@ var cursorProduction = 0.1;
 var grandmaProduction = 0.1;
 // /Structures and Units
 
-// Start
+// Start And variables
 var cookies = 0;
 var cookiesPerSecond = 0;
-var cookiesPerClick = 1;
+var cookiesPerClick = 1.0;
 var purchasePrice = 1;
 document.getElementById("cursorPrice").innerHTML = cursorPrice;
 document.getElementById("grandmaPrice").innerHTML = grandmaPrice;
-// /Start
+const el = document.getElementById("upgradesContainer");
+const hiddenDiv = document.getElementById("upgrades");
+const popoverTriggerList = document.querySelectorAll(
+  '[data-bs-toggle="popover"]'
+);
+const popoverList = [...popoverTriggerList].map(
+  (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
+);
+hiddenDiv.style.display = "none";
+
+// Hiding Function
+el.addEventListener("mouseover", function handleMouseOver() {
+  hiddenDiv.style.display = "flex";
+});
+
+el.addEventListener("mouseout", function handleMouseOut() {
+  hiddenDiv.style.display = "none";
+});
 
 function onClick() {
   cookies += cookiesPerClick;
-  document.getElementById("cookies").innerHTML = cookies;
+  document.getElementById("cookies").innerHTML = cookies.toFixed(1);
+  document.getElementById("cookiesPerSecond").innerHTML =
+    cookiesPerSecond.toFixed(1);
 }
 
 function onCursorClick() {
@@ -54,6 +73,7 @@ function onGrandmaClick() {
 function upgradeCursor1() {
   if (cookies > 500) {
     cursorProduction *= 2;
+    cookiesPerClick *= 2;
   } else if (cookies < 500) {
     console.log("Cannot Afford!");
   }
@@ -73,8 +93,7 @@ $(function () {
 
 function oneSecondFunction() {
   cookies += cookiesPerSecond;
-  Math.round(cursorPrice);
-  Math.round(cookies);
-  document.getElementById("cookies").innerHTML = cookies;
-  document.getElementById("cookiesPerSecond").innerHTML = cookiesPerSecond;
+  document.getElementById("cookies").innerHTML = cookies.toFixed(1);
+  document.getElementById("cookiesPerSecond").innerHTML =
+    cookiesPerSecond.toFixed(1);
 }

@@ -1,5 +1,6 @@
 body {
   margin: 0px;
+  height: 100vh;
   display: flex;
   justify-content: space-between;
 }
@@ -17,8 +18,9 @@ body {
   border: rgb(35, 35, 35) solid 3px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
+  padding-top: 8px;
 }
 
 .bakeryNameContainer {
@@ -33,6 +35,7 @@ body {
   margin-right: 10%;
   color: white;
   text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #bakeryName {
@@ -48,24 +51,57 @@ body {
   border: none;
 }
 
+#bakeryName:hover {
+  cursor: pointer;
+}
+
 .cookiesData {
   background-color: rgba(47, 47, 47, 0.523);
   margin-top: 5px;
   padding: 5px;
-  color: white;
+  color: rgb(255, 255, 255);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: 0.3s;
+}
+
+.cookiesData:hover {
+  margin-top: 7px;
+  cursor: default;
 }
 
 .cookiesAmount {
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+  font-size: 32px;
   margin: 0px;
 }
 
 .cookiesPerSecond {
   margin: 0px;
   font-size: 18px;
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 }
 
 .clicker {
   margin: 20px;
+  background-color: rgba(47, 47, 47, 0.523);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: rgba(255, 255, 255, 0.523);
+  color: rgba(255, 255, 255, 0.347);
+  padding: 18px;
+  border-radius: 8px;
+  font-size: 20px;
+  transition: 0.3s;
+}
+
+.clicker:hover {
+  background-color: rgba(47, 47, 47, 0.347);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  opacity: 120%;
+}
+
+.clicker svg {
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 }
 
 /* Buildings Area */
@@ -83,7 +119,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-
 /* Purchase Area */
 .purchaseArea {
   background: repeating-linear-gradient(
@@ -103,49 +138,96 @@ body {
   color: white;
   text-align: center;
   margin: 0px;
-  margin-bottom: 0px;
-  border-bottom: rgb(35, 35, 35) solid 3px;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 }
 
-.upgrades {
+/*  Purchase Upgrades*/
+#upgradesContainer {
+  border-top: rgb(35, 35, 35) solid 6px;
+  border-bottom: rgb(35, 35, 35) solid 6px;
+  transition: 0.3s;
+}
+
+h2 {
+  font-size: 30px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-align: center;
+  color: white;
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+}
+
+#upgrades {
+  padding: 3px;
   display: flex;
   flex-wrap: wrap;
 }
 
-.upgrade {
+#upgrade {
   width: 50px;
   height: 50px;
-  border: rgb(53, 33, 1) 3px ridge;
+  background-color: rgba(47, 47, 47, 0.523);
+  color: rgba(255, 255, 255, 0.347);
+  border-radius: 8px;
+  margin: 3px;
+  font-size: 6px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   text-align: center;
+  transition: 0.3s;
 }
 
+#upgrade:hover {
+  background-color: rgba(47, 47, 47, 0.347);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+#upgrade h1 {
+  margin: 0px;
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+}
+
+#upgrade p {
+  margin: 0px;
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+}
+
+/* Purchase Buildings */
 .purchaseItem {
-  background-color: #454545;
-  color: white;
+  background-color: rgba(47, 47, 47, 0.523);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: rgb(255, 255, 255);
   display: flex;
   justify-content: space-between;
-  padding: 10px;
-  border: groove black 3px;
+  padding: 8px;
+  margin-left: 6px;
+  margin-right: 6px;
+  border-radius: 8px;
+  transition: 0.3s;
 }
 
 .purchaseItem:hover {
-  opacity: 120%;
+  background-color: rgba(47, 47, 47, 0.347);
+  margin-top: 6px;
+  cursor: pointer;
 }
 
 .purchaseData h2 {
   margin-top: 0px;
   margin-bottom: 0px;
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 }
 
 .purchaseData h3 {
   margin-top: 0px;
   margin-bottom: 02px;
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 }
 
 .ownedAmount {
   margin: 0px;
-}
-
-#cannotAfford {
-  color: red;
 }
