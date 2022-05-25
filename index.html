@@ -97,11 +97,8 @@
             <!-- Upgrades -->
             <div
               id="upgrade"
-              onClick="purchaseCrank()"
-              data-bs-toggle="popover"
-              data-bs-trigger="hover"
-              title="Crank Upgrade"
-              data-bs-content="Multiply batteries gained by Crank and clicking by 2."
+              onClick="upgradeCrank()"
+              data-bs-toggle="popover" title="Upgrade Crank" data-bs-content="Multiply production of cranks and clicking by 2" data-bs-trigger="hover"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -120,11 +117,46 @@
             </div>
             <div
               id="upgrade"
-              onClick="purchaseWindmill()"
-              data-bs-toggle="popover"
-              data-bs-trigger="hover"
-              title="Windmill upgrade"
-              data-bs-content="Multiply Windmill production by 2."
+              onClick="upgradeWindmill()"
+              data-bs-toggle="popover" title="Upgrade Windmill" data-bs-content="Multiply production of windmill by 2" data-bs-trigger="hover"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                />
+              </svg>
+            </div>
+            <div
+              id="upgrade"
+              onClick="upgradeWindTurbine()"
+              data-bs-toggle="popover" title="Popover title" data-bs-content="Multiply production of wind turbine by 2" data-bs-trigger="hover"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                />
+              </svg>
+            </div>
+            <div
+              id="upgrade"
+              onClick="upgradeSolarPanel()"
+              data-bs-toggle="popover" title="Upgrade Solar Panel" data-bs-content="Multiply production of solar panel by 2" data-bs-trigger="hover"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

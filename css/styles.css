@@ -186,6 +186,14 @@ body {
   transition: 0.3s;
 }
 
+.purchaseData h2 {
+  font-size: 20px;
+}
+
+.purchaseData h3 {
+  font-size: 18px;
+}
+
 h2 {
   font-size: 30px;
   padding-top: 8px;
