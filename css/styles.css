@@ -1,13 +1,13 @@
 body {
   margin: 0px;
-  height: 97vh;
+  height: 140vh;
 }
 
 .menuBar {
   background-color: rgb(35, 35, 35);
   padding-left: 8px;
   width: 100%;
-  height: 3vh;
+  height: 3.5vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -32,11 +32,11 @@ body {
 /* Clicker Area */
 .clickerArea {
   background: repeating-linear-gradient(
-    90deg,
-    #39435b,
-    #39435b 25px,
-    #2d3547 25px,
-    #2d3547 50px
+    108deg,
+    #5b3939,
+    #5b3939 25px,
+    #472d2d 25px,
+    #472d2d 50px
   );
   width: 180%;
   border: rgb(35, 35, 35) solid 3px;
@@ -89,8 +89,11 @@ body {
 }
 
 .batteriesData:hover {
-  margin-top: 7px;
   cursor: default;
+}
+
+.batteriesData h1 {
+  font-size: 27px;
 }
 
 .batteriesAmount {
@@ -117,7 +120,7 @@ body {
   filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 }
 
-.clicker {
+#clicker {
   margin: 20px;
   background-color: rgba(47, 47, 47, 0.523);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -129,25 +132,25 @@ body {
   transition: 0.3s;
 }
 
-.clicker:hover {
+#clicker:hover {
   background-color: rgba(47, 47, 47, 0.347);
   color: rgb(255, 255, 255);
   cursor: pointer;
   opacity: 120%;
 }
 
-.clicker svg {
+#clicker svg {
   filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 }
 
 /* Buildings Area */
 .buildingsArea {
   background: repeating-linear-gradient(
-    90deg,
-    #404c66,
-    #404c66 25px,
-    #374157 25px,
-    #374157 50px
+    108deg,
+    #664040,
+    #664040 25px,
+    #573737 25px,
+    #573737 50px
   );
   border: rgb(35, 35, 35) solid 3px;
   padding: 15px;
@@ -158,11 +161,11 @@ body {
 /* Purchase Area */
 .purchaseArea {
   background: repeating-linear-gradient(
-    90deg,
-    #39435b,
-    #39435b 25px,
-    #2d3547 25px,
-    #2d3547 50px
+    108deg,
+    #5b3939,
+    #5b3939 25px,
+    #472d2d 25px,
+    #472d2d 50px
   );
   border: rgb(35, 35, 35) solid 3px;
   width: 100%;
