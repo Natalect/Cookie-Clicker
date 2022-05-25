@@ -20,6 +20,7 @@ var windmillUpgradeTax = 0;
 // Start And variables
 var batteries = 999999999998999;
 var batteriesPerSecond = 0;
+var batteriesPerSecondToShow = 0;
 var batteriesPerClick = 1.0;
 var purchasePrice = 1;
 var taxes = 0;
@@ -141,10 +142,16 @@ function oneSecondFunction() {
   if (taxmode.checked) {
     windmillTax = windmillPurchaseTax += windmillUpgradeTax;
     taxes = windmillTax;
+    batteries -= taxes;
+    batteriesPerSecondToShow = batteriesPerSecond -= taxes;
+    document.getElementById("batteriesPerSecond").innerHTML =
+      batteriesPerSecondToShow;
+  } else {
+    document.getElementById("batteriesPerSecond").innerHTML =
+      batteriesPerSecond;
   }
+  batteriesPerSecondToShow;
   batteries += batteriesPerSecond;
-  batteries -= taxes;
   document.getElementById("batteries").innerHTML = batteries.toFixed(1);
-  document.getElementById("batteriesPerSecond").innerHTML = batteriesPerSecond;
   document.getElementById("windmillTax").innerHTML = windmillTax.toFixed(1);
 }
