@@ -39,6 +39,7 @@ const upgradesList = document.getElementById("upgradesContainer");
 const upgrade = document.getElementById("upgrades");
 const taxCounter = document.getElementById("taxCounter");
 const settingButton = document.getElementById("settingButton");
+const clicker = document.getElementById("clicker");
 const setting = document.getElementById("setting");
 const earning = document.getElementById("earning");
 const popoverTriggerList = document.querySelectorAll(
@@ -60,6 +61,14 @@ upgradesList.addEventListener("mouseover", function handleMouseOver() {
 
 upgradesList.addEventListener("mouseout", function handleMouseOut() {
   upgrade.style.display = "none";
+});
+
+clicker.addEventListener("mouseover", function handleMouseOver() {
+  clicker.style.margin = "10px";
+});
+
+clicker.addEventListener("mouseout", function handleMouseOut() {
+  clicker.style.margin = "20px";
 });
 
 // Show taxes
@@ -84,6 +93,14 @@ function earningPressed() {
     earning.style.display = "none";
     earningOpen = false;
   }
+}
+
+function clickerMouseDown() {
+  clicker.style.color = "yellow";
+}
+
+function clickerMouseUp() {
+  clicker.style.color = "rgba(255, 255, 255, 0.347)";
 }
 
 function onClick() {
