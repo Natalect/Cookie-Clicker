@@ -144,14 +144,15 @@ function oneSecondFunction() {
     taxes = windmillTax;
     batteries -= taxes;
     batteriesPerSecondToShow = batteriesPerSecond -= taxes;
+    batteries += batteriesPerSecond -= taxes;
     document.getElementById("batteriesPerSecond").innerHTML =
       batteriesPerSecondToShow;
   } else {
+    batteries += batteriesPerSecond;
     document.getElementById("batteriesPerSecond").innerHTML =
       batteriesPerSecond;
   }
   batteriesPerSecondToShow;
-  batteries += batteriesPerSecond;
   document.getElementById("batteries").innerHTML = batteries.toFixed(1);
   document.getElementById("windmillTax").innerHTML = windmillTax.toFixed(1);
 }
