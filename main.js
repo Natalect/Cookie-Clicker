@@ -1,88 +1,133 @@
 // Structures and Units
-var amountOfCursors = 0;
-var amountOfGrandmas = 0;
+var amountOfCranks = 0;
+var amountOfWindmills = 0;
 
-var cursorPrice = 14;
-var grandmaPrice = 99;
+var crankPrice = 14;
+var windmillPrice = 99;
 
-var cursorProduction = 0.1;
-var grandmaProduction = 0.1;
+var crankProduction = 0.1;
+var windmillProduction = 1;
+
+var upgradeWindmillPrice = 1000;
+var upgradeCrankPrice = 500;
 // /Structures and Units
 
+// Structure and Unit Tax Variables
+var windmillTax = 0;
+var windmillPurchaseTax = 0;
+var windmillUpgradeTax = 0;
+
 // Start And variables
-var cookies = 0;
-var cookiesPerSecond = 0;
-var cookiesPerClick = 1.0;
+var batteries = 999999999998999;
+var batteriesPerSecond = 0;
+var batteriesPerClick = 1.0;
 var purchasePrice = 1;
-document.getElementById("cursorPrice").innerHTML = cursorPrice;
-document.getElementById("grandmaPrice").innerHTML = grandmaPrice;
-const el = document.getElementById("upgradesContainer");
-const hiddenDiv = document.getElementById("upgrades");
+var taxes = 0;
+var settingOpen = false;
+var earningOpen = false;
+document.getElementById("crankPrice").innerHTML = crankPrice;
+document.getElementById("windmillPrice").innerHTML = windmillPrice;
+const upgradesList = document.getElementById("upgradesContainer");
+const upgrade = document.getElementById("upgrades");
+const settingButton = document.getElementById("settingButton");
+const setting = document.getElementById("setting");
+const earninggButton = document.getElementById("earningButton");
+const earning = document.getElementById("earning");
 const popoverTriggerList = document.querySelectorAll(
   '[data-bs-toggle="popover"]'
 );
 const popoverList = [...popoverTriggerList].map(
   (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
 );
-hiddenDiv.style.display = "none";
+upgrade.style.display = "none";
+taxmode = document.getElementById("taxmodeSwitch");
 
 // Hiding Function
-el.addEventListener("mouseover", function handleMouseOver() {
-  hiddenDiv.style.display = "flex";
+upgradesList.addEventListener("mouseover", function handleMouseOver() {
+  upgrade.style.display = "flex";
 });
 
-el.addEventListener("mouseout", function handleMouseOut() {
-  hiddenDiv.style.display = "none";
+upgradesList.addEventListener("mouseout", function handleMouseOut() {
+  upgrade.style.display = "none";
 });
+
+// Show taxes
+setting.style.display = "none";
+earning.style.display = "none";
+
+function settingPressed() {
+  if (settingOpen == false) {
+    setting.style.display = "flex";
+    settingOpen = true;
+  } else {
+    setting.style.display = "none";
+    settingOpen = false;
+  }
+}
+
+function earningPressed() {
+  if (earningOpen == false) {
+    earning.style.display = "flex";
+    earningOpen = true;
+  } else {
+    earning.style.display = "none";
+    earningOpen = false;
+  }
+}
 
 function onClick() {
-  cookies += cookiesPerClick;
-  document.getElementById("cookies").innerHTML = cookies.toFixed(1);
-  document.getElementById("cookiesPerSecond").innerHTML =
-    cookiesPerSecond.toFixed(1);
+  batteries += batteriesPerClick;
+  document.getElementById("batteries").innerHTML = batteries.toFixed(1);
+  document.getElementById("batteriesPerSecond").innerHTML =
+    batteriesPerSecond.toFixed(1);
 }
 
-function onCursorClick() {
-  if (cookies > cursorPrice) {
-    cookies -= cursorPrice;
-    amountOfCursors += 1;
-    cookiesPerSecond += 0.1;
-    cursorPrice += amountOfCursors;
-    cursorPrice = Math.round(cursorPrice);
-    document.getElementById("cursorPrice").innerHTML = cursorPrice;
-    document.getElementById("amountOfCursors").innerHTML = amountOfCursors;
-  } else if (cookies < cursorPrice) {
+function purchaseCrank() {
+  if (batteries > crankPrice) {
+    batteries -= crankPrice;
+    amountOfCranks += 1;
+    batteriesPerSecond += 0.1;
+    crankPrice += amountOfCranks;
+    crankPrice = Math.round(crankPrice);
+    document.getElementById("crankPrice").innerHTML = crankPrice;
+    document.getElementById("amountOfCranks").innerHTML = amountOfCranks;
+  } else if (batteries < crankPrice) {
     console.log("Cannot Afford!");
   }
 }
 
-function onGrandmaClick() {
-  if (cookies > grandmaPrice) {
-    cookies -= grandmaPrice;
-    amountOfGrandmas += 1;
-    cookiesPerSecond += grandmaProduction;
-    grandmaPrice += amountOfGrandmas;
-    grandmaPrice = Math.round(grandmaPrice);
-    document.getElementById("grandmaPrice").innerHTML = grandmaPrice;
-    document.getElementById("amountOfGrandmas").innerHTML = amountOfGrandmas;
-  } else if (cookies < cursorPrice) {
+function purchaseWindmill() {
+  if (batteries > windmillPrice) {
+    batteries -= windmillPrice;
+    amountOfWindmills += 1;
+    batteriesPerSecond += windmillProduction;
+    windmillPrice += amountOfWindmills;
+    windmillPrice = Math.round(windmillPrice);
+    windmillPurchaseTax += 0.5;
+    document.getElementById("windmillPrice").innerHTML = windmillPrice;
+    document.getElementById("amountOfWindmills").innerHTML = amountOfWindmills;
+  } else if (batteries < crankPrice) {
     console.log("Cannot Afford!");
   }
 }
 
-function upgradeCursor1() {
-  if (cookies > 500) {
-    cursorProduction *= 2;
-    cookiesPerClick *= 2;
-  } else if (cookies < 500) {
+function upgradeCrank() {
+  if (batteries > upgradeCrankPrice) {
+    upgradeCrankPrice *= 5;
+    crankProduction *= 2;
+    batteriesPerClick *= 2;
+  } else if (batteries < 500) {
     console.log("Cannot Afford!");
   }
 }
 
-function upgradeGrandma1() {
-  if (cookies > 1000) {
-    grandmaProduction *= 2;
-  } else if (cookies < 1000) {
+function upgradeWindmill() {
+  if (batteries > upgradeWindmillPrice) {
+    upgradeWindmillPrice *= 5;
+    windmillProduction *= 2;
+    amountOfWindmillUpgrades += 1;
+    windmillUpgradeTax += 0.1;
+  } else if (batteries < 1000) {
     console.log("Cannot Afford!");
   }
 }
@@ -92,8 +137,14 @@ $(function () {
 });
 
 function oneSecondFunction() {
-  cookies += cookiesPerSecond;
-  document.getElementById("cookies").innerHTML = cookies.toFixed(1);
-  document.getElementById("cookiesPerSecond").innerHTML =
-    cookiesPerSecond.toFixed(1);
+  // Check if the element is selected/checked
+  if (taxmode.checked) {
+    windmillTax = windmillPurchaseTax += windmillUpgradeTax;
+    taxes = windmillTax;
+  }
+  batteries += batteriesPerSecond;
+  batteries -= taxes;
+  document.getElementById("batteries").innerHTML = batteries.toFixed(1);
+  document.getElementById("batteriesPerSecond").innerHTML = batteriesPerSecond;
+  document.getElementById("windmillTax").innerHTML = windmillTax.toFixed(1);
 }
