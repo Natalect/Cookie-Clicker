@@ -3,27 +3,32 @@ var amountOfCranks = 0;
 var amountOfWindmills = 0;
 var amountOfWindTurbines = 0;
 var amountOfSolarPanels = 0;
+var amountOfCoalPowerPlant = 0;
 
-var crankPrice = 18;
-var windmillPrice = 115;
-var windTurbinePrice = 1265;
-var solarPanelPrice = 13800;
+var crankPrice = 15;
+var windmillPrice = 100;
+var windTurbinePrice = 1100;
+var solarPanelPrice = 12000;
+var coalPowerPlantPrice = 130000;
 
 var crankProduction = 0.1;
 var windmillProduction = 1;
 var windTurbineProduction = 8;
 var solarPanelProduction = 47;
+var coalPowerPlantProduction = 00;
 
 var upgradeWindmillPrice = 1000;
 var upgradeCrankPrice = 500;
 var upgradeWindmillPrice = 1500;
 var upgradeSolarPanelPrice = 2000;
+var upgradeCoalPowerPlantPrice = 2000;
 // /Structures and Units
 
 // Structure and Unit Tax Variables
 var windmillTax = 0;
 var windTurbineTax = 0;
 var solarPanelTax = 0;
+var coalPowerPlantTax = 0;
 
 // Start And variables
 var batteries = 0.1;
@@ -77,6 +82,8 @@ function onClick() {
 
 function sandboxGetButton() {
   var sandboxGetAmount = document.getElementById("sandboxGetAmount").value;
+  alert("Unavailable at this moment, testing.");
+  alert(sandboxGetAmount);
 }
 
 function addALot() {
@@ -122,7 +129,7 @@ function purchaseWindTurbine() {
     windTurbinePrice += amountOfWindTurbines;
     windTurbinePrice = Math.round(windTurbinePrice);
     windTurbineTax += 2;
-    document.getElementById("windTurbinePrice").innerHTML = windmillPrice;
+    document.getElementById("windTurbinePrice").innerHTML = windTurbinePric;
     document.getElementById("amountOfWindTurbines").innerHTML =
       amountOfWindTurbines;
     document.getElementById("batteries").innerHTML = batteries.toFixed(0);
@@ -139,11 +146,29 @@ function purchaseSolarPanel() {
     solarPanelPrice += amountOfSolarPanels;
     solarPanelPrice = Math.round(solarPanelPrice);
     solarPanelTax += 6;
-    document.getElementById("solarPanelPrice").innerHTML = windmillPrice;
+    document.getElementById("solarPanelPrice").innerHTML = solarPanelPrice;
     document.getElementById("amountOfSolarPanels").innerHTML =
       amountOfSolarPanels;
     document.getElementById("batteries").innerHTML = batteries.toFixed(0);
   } else if (batteries < solarPanelPrice) {
+    console.log("Cannot Afford!");
+  }
+}
+
+function purchaseCoalPowerPlant() {
+  if (batteries > coalPowerPlantPrice) {
+    batteries -= coalPowerPlantPrice;
+    amountOfSolarPanels++;
+    batteriesPerSecond += solarPanelProduction;
+    coalPowerPlantPrice += amountOfSolarPanels;
+    coalPowerPlantPrice = Math.round(coalPowerPlantPrice);
+    coalPowerPlantTax += 6;
+    document.getElementById("coalPowerPlantPrice").innerHTML =
+      coalPowerPlantPrice;
+    document.getElementById("amountOfSolarPanels").innerHTML =
+      amountOfSolarPanels;
+    document.getElementById("batteries").innerHTML = batteries.toFixed(0);
+  } else if (batteries < coalPowerPlantPrice) {
     console.log("Cannot Afford!");
   }
 }
