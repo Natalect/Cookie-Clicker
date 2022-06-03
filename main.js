@@ -26,13 +26,12 @@ var windTurbineTax = 0;
 var solarPanelTax = 0;
 
 // Start And variables
-var batteries = 999999999998999;
+var batteries = 0.1;
 var batteriesPerSecond = 0;
 var batteriesPerClick = 1.0;
 var purchasePrice = 1;
 var taxes = 0;
-var settingOpen = false;
-var earningOpen = false;
+var sandboxGetAmount = 0;
 document.getElementById("crankPrice").innerHTML = crankPrice;
 document.getElementById("windmillPrice").innerHTML = windmillPrice;
 const upgradesList = document.getElementById("upgradesContainer");
@@ -40,8 +39,6 @@ const upgrade = document.getElementById("upgrades");
 const taxCounter = document.getElementById("taxCounter");
 const settingButton = document.getElementById("settingButton");
 const clicker = document.getElementById("clicker");
-const setting = document.getElementById("setting");
-const earning = document.getElementById("earning");
 const popoverTriggerList = document.querySelectorAll(
   '[data-bs-toggle="popover"]'
 );
@@ -63,38 +60,6 @@ upgradesList.addEventListener("mouseout", function handleMouseOut() {
   upgrade.style.display = "none";
 });
 
-clicker.addEventListener("mouseover", function handleMouseOver() {
-  clicker.style.margin = "10px";
-});
-
-clicker.addEventListener("mouseout", function handleMouseOut() {
-  clicker.style.margin = "20px";
-});
-
-// Show taxes
-setting.style.display = "none";
-earning.style.display = "none";
-
-function settingPressed() {
-  if (settingOpen == false) {
-    setting.style.display = "flex";
-    settingOpen = true;
-  } else {
-    setting.style.display = "none";
-    settingOpen = false;
-  }
-}
-
-function earningPressed() {
-  if (earningOpen == false) {
-    earning.style.display = "flex";
-    earningOpen = true;
-  } else {
-    earning.style.display = "none";
-    earningOpen = false;
-  }
-}
-
 function clickerMouseDown() {
   clicker.style.color = "yellow";
 }
@@ -105,9 +70,17 @@ function clickerMouseUp() {
 
 function onClick() {
   batteries += batteriesPerClick;
-  document.getElementById("batteries").innerHTML = batteries.toFixed(1);
+  document.getElementById("batteries").innerHTML = batteries.toFixed(0);
   document.getElementById("batteriesPerSecond").innerHTML =
     batteriesPerSecond.toFixed(1);
+}
+
+function sandboxGetButton() {
+  var sandboxGetAmount = document.getElementById("sandboxGetAmount").value;
+}
+
+function addALot() {
+  batteries += 999999999999999999999999999;
 }
 
 function purchaseCrank() {
@@ -119,6 +92,7 @@ function purchaseCrank() {
     crankPrice = Math.round(crankPrice);
     document.getElementById("crankPrice").innerHTML = crankPrice;
     document.getElementById("amountOfCranks").innerHTML = amountOfCranks;
+    document.getElementById("batteries").innerHTML = batteries.toFixed(0);
   } else if (batteries < crankPrice) {
     console.log("Cannot Afford!");
   }
@@ -134,6 +108,7 @@ function purchaseWindmill() {
     windmillTax += 0.5;
     document.getElementById("windmillPrice").innerHTML = windmillPrice;
     document.getElementById("amountOfWindmills").innerHTML = amountOfWindmills;
+    document.getElementById("batteries").innerHTML = batteries.toFixed(0);
   } else if (batteries < crankPrice) {
     console.log("Cannot Afford!");
   }
@@ -143,13 +118,14 @@ function purchaseWindTurbine() {
   if (batteries > windTurbinePrice) {
     batteries -= windTurbinePrice;
     amountOfWindTurbines++;
-    batteriesPerSecond += windTurbinePrice;
+    batteriesPerSecond += windTurbineProduction;
     windTurbinePrice += amountOfWindTurbines;
     windTurbinePrice = Math.round(windTurbinePrice);
     windTurbineTax += 2;
     document.getElementById("windTurbinePrice").innerHTML = windmillPrice;
     document.getElementById("amountOfWindTurbines").innerHTML =
       amountOfWindTurbines;
+    document.getElementById("batteries").innerHTML = batteries.toFixed(0);
   } else if (batteries < windTurbinePrice) {
     console.log("Cannot Afford!");
   }
@@ -166,6 +142,7 @@ function purchaseSolarPanel() {
     document.getElementById("solarPanelPrice").innerHTML = windmillPrice;
     document.getElementById("amountOfSolarPanels").innerHTML =
       amountOfSolarPanels;
+    document.getElementById("batteries").innerHTML = batteries.toFixed(0);
   } else if (batteries < solarPanelPrice) {
     console.log("Cannot Afford!");
   }
@@ -176,6 +153,7 @@ function upgradeCrank() {
     upgradeCrankPrice *= 5;
     crankProduction *= 2;
     batteriesPerClick *= 2;
+    document.getElementById("batteries").innerHTML = batteries.toFixed(0);
   } else if (batteries < upgradeCrankPrice) {
     console.log("Cannot Afford!");
   }
@@ -187,6 +165,7 @@ function upgradeWindmill() {
     windmillProduction *= 2;
     amountOfWindmillUpgrades++;
     windmillTax += 0.1;
+    document.getElementById("batteries").innerHTML = batteries.toFixed(0);
   } else if (batteries < upgradeWindmillPrice) {
     console.log("Cannot Afford!");
   }
@@ -198,6 +177,7 @@ function upgradeWindTurbine() {
     windTurbineProduction *= 2;
     amountOfWindTurbineUpgrades++;
     windTurbineTax += 0.1;
+    document.getElementById("batteries").innerHTML = batteries.toFixed(0);
   } else if (batteries < upgradeWindTurbinePrice) {
     console.log("Cannot Afford!");
   }
@@ -209,7 +189,34 @@ function upgradeSolarPanel() {
     solarPanelProduction *= 2;
     amountOfSolarPanelsUpgrades++;
     solarPanelTax += 0.1;
-  } else if (batteries < 1000) {
+    document.getElementById("batteries").innerHTML = batteries.toFixed(0);
+  } else if (batteries < upgradeSolarPanelPrice) {
+    console.log("Cannot Afford!");
+  }
+}
+
+function advanceWindmill() {
+  if (batteries > (windTurbinePrice -= windmillPrice)) {
+    batteries -= windTurbinePrice;
+    amountOfWindTurbines++;
+    batteriesPerSecond += windTurbinePrice;
+    windTurbinePrice += amountOfWindTurbines;
+    windTurbinePrice = Math.round(windTurbinePrice);
+    windTurbineTax += 2;
+    document.getElementById("windTurbinePrice").innerHTML = windmillPrice;
+    document.getElementById("amountOfWindTurbines").innerHTML =
+      amountOfWindTurbines;
+
+    amountOfWindmills -= 1;
+    batteriesPerSecond -= windmillProduction;
+    windmillPrice -= amountOfWindmills;
+    windmillPrice = Math.round(windmillPrice);
+    windmillTax -= 0.5;
+    document.getElementById("windmillPrice").innerHTML = windmillPrice;
+    document.getElementById("amountOfWindmills").innerHTML = amountOfWindmills;
+    document.getElementById("batteries").innerHTML = batteries.toFixed(0);
+    document.getElementById("batteries").innerHTML = batteries.toFixed(0);
+  } else if (batteries < (windTurbinePrice -= windmillPrice)) {
     console.log("Cannot Afford!");
   }
 }
@@ -224,16 +231,16 @@ function oneSecondFunction() {
     taxes = windmillTax += windTurbineTax += solarPanelTax;
     batteries += batteriesPerSecond;
     batteries -= taxes;
-    document.getElementById("windmillTax").innerHTML = windmillTax.toFixed(1);
-    document.getElementById("taxCounter").innerHTML = taxes.toFixed(1);
+    document.getElementById("windmillTax").innerHTML = windmillTax.toFixed(0);
+    document.getElementById("taxCounter").innerHTML = taxes.toFixed(0);
     taxCounter.style.display = "block";
-    document.getElementById("taxCounter").innerHTML = taxes.toFixed(1);
+    document.getElementById("taxCounter").innerHTML = taxes.toFixed(0);
   } else {
     batteries += batteriesPerSecond;
     taxCounter.style.display = "none";
   }
 
-  document.getElementById("batteries").innerHTML = batteries.toFixed(1);
+  document.getElementById("batteries").innerHTML = batteries.toFixed(0);
   document.getElementById("batteriesPerSecond").innerHTML =
     batteriesPerSecond.toFixed(1);
 }
